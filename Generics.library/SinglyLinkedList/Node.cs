@@ -2,14 +2,19 @@ using System;
 
 namespace Generics.library.SinglyLinkedList
 {
-    public class Node
+    public class Node<T>
     {
-        public int Value => throw new NotImplementedException();
-        public Node Next => throw new NotImplementedException();
+        public T Value { get; set; }
+        public Node<T> Next { get; set; }
+
+        public Node(T value)
+        {
+            this.Value = value;
+        }
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return this.Value.ToString();
         }
     }
 }

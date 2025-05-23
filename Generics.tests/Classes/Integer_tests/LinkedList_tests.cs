@@ -5,12 +5,12 @@ namespace Generics.tests.Classes.Integer_tests
 {
     public class LinkedList_tests
     {
-        private List _list;
+        private Generics.library.SinglyLinkedList.List<int> _list;
 
         [TestInitialize]
         public void Setup()
         {
-            _list = new List();
+            _list = new();
         }
 
         [TestMethod]
@@ -65,7 +65,7 @@ namespace Generics.tests.Classes.Integer_tests
             _list.Add(30);
 
             // Act
-            Node node = _list.Find(20);
+            Node<int> node = _list.Find(20);
 
             // Assert
             Assert.IsNotNull(node);
@@ -80,7 +80,7 @@ namespace Generics.tests.Classes.Integer_tests
             _list.Add(20);
 
             // Act
-            Node node = _list.Find(30);
+            Node<int> node = _list.Find(30);
 
             // Assert
             Assert.IsNull(node);
@@ -95,7 +95,7 @@ namespace Generics.tests.Classes.Integer_tests
             _list.Add(30);
 
             // Act
-            Node removed = _list.RemoveAt(1);
+            Node<int> removed = _list.Remove(1);
 
             // Assert
             Assert.AreEqual(20, removed.Value);
@@ -110,7 +110,7 @@ namespace Generics.tests.Classes.Integer_tests
             _list.Add(10);
 
             // Act & Assert
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => _list.RemoveAt(5));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => _list.Remove(5));
         }
 
         [TestMethod]
@@ -121,7 +121,7 @@ namespace Generics.tests.Classes.Integer_tests
             _list.Add(20);
 
             // Act
-            Node removed = _list.RemoveFirst();
+            Node<int> removed = _list.RemoveFirst();
 
             // Assert
             Assert.AreEqual(10, removed.Value);
@@ -136,7 +136,7 @@ namespace Generics.tests.Classes.Integer_tests
             _list.Add(20);
 
             // Act
-            Node removed = _list.RemoveLast();
+            Node<int> removed = _list.RemoveLast();
 
             // Assert
             Assert.AreEqual(20, removed.Value);

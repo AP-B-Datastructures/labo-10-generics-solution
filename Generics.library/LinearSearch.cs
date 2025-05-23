@@ -7,12 +7,18 @@ namespace Generics.library
     {
         public static int Search(int[] Array, int value)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Array.Length; ++i)
+            {
+                var item = Array[i];
+                if (item == value)
+                    return i;
+            }
+            return -1;
         }
 
-        public static int Search(List list, int value)
+        public static int Search(SinglyLinkedList.List<int> list, int value)
         {
-            throw new NotImplementedException();
+            return list.FindIndex(value);
         }
     }
 }

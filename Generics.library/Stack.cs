@@ -2,35 +2,53 @@ using System;
 
 namespace Generics.library
 {
-    public class Stack
+    public class Stack<T>
     {
+        private T[] _data = new T[10];
+        private int _top = 0;
 
-        private int[] data = new int[10];
-        private int top = -1;
+        public bool IsEmpty => this._top == 0;
 
-        public bool IsEmpty => throw new NotImplementedException();
+        public bool IsFull => this._top == this._data.Length;
 
-        public bool IsFull => throw new NotImplementedException();
-        public int Length => throw new NotImplementedException();
+        public int Length => this._top;
 
         public Stack(int initialSize = 10)
         {
-            throw new NotImplementedException();
+            this._data = new T[initialSize];
         }
 
-        public void Push(int newValue)
+        public void Push(T newValue)
         {
-            throw new NotImplementedException();
+            if (this.IsFull)
+            {
+                this.ResizeArray();
+            }
+
+            this._data[this._top] = newValue;
+            this._top++;
         }
 
-        public int Pop()
+        public T Pop()
         {
-            throw new NotImplementedException();
+            if (this.IsEmpty)
+            {
+                throw new InvalidOperationException("Pop failed because stack is empty");
+            }
+            this._top--;
+            return this._data[this._top];
         }
 
         private void ResizeArray()
         {
-            throw new NotImplementedException();
+            T[] newDataArray = new T[this._data.Length * 2];
+
+            for (int i = 0; i < this._data.Length; ++i)
+            {
+                newDataArray[i] = this._data[i];
+            }
+
+            this._data = newDataArray;
         }
     }
 }

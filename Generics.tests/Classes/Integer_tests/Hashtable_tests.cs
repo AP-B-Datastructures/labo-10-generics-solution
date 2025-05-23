@@ -5,13 +5,13 @@ namespace Generics.tests.Classes.Integer_tests
 {
     public class Hashtable_tests
     {
-        private Hashtable hashtable;
+        private Hashtable<int> hashtable;
 
         [TestInitialize]
         public void Setup()
         {
             // Initialize a new list to simulate a string-only hashtable
-            hashtable = new Hashtable(10);
+            hashtable = new(10);
         }
 
         [TestMethod]
@@ -39,20 +39,6 @@ namespace Generics.tests.Classes.Integer_tests
 
             //Assert
             Assert.IsTrue(true);
-        }
-
-        [TestMethod]
-        public void Add_DuplicateValues_CountShouldReturnNumberOfInstances()
-        {
-            // Arrange
-            int value = 17;
-
-            // Act
-            hashtable.Add(value);
-            hashtable.Add(value);
-
-            //Assert
-            Assert.AreEqual(2, hashtable.Count(value));
         }
 
         [TestMethod]

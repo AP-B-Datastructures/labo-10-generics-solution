@@ -1,43 +1,60 @@
 using System;
+using Generics.library.SinglyLinkedList;
 
 namespace Generics.library
 {
-    public class Hashtable
+    public class Hashtable<T> where T : IComparable
     {
-        public int Length => throw new NotImplementedException();
+        private SinglyLinkedList.List<T>[] array;
+        public int Length {get; private set;}
         public Hashtable(int size)
         {
-            throw new NotImplementedException();
+            array = new SinglyLinkedList.List<T>[size];
         }
 
-        public int Count(int value)
+        public void Add(T value)
         {
-            throw new NotImplementedException();
+            var idx = CalculateHash(value);
+            if (array[idx] == null)
+                array[idx] = new SinglyLinkedList.List<T>();  //make sure that the LL is created
+
+            array[idx].Add(value);
         }
 
-        public void Add(int value)
+        public void Remove(T value)
         {
-            throw new NotImplementedException();
-        }
+            var idx = CalculateHash(value);
+            if (array[idx] == null)
+                array[idx] = new SinglyLinkedList.List<T>(); //make sure that the LL is created
 
-        public void Remove(int value)
-        {
-            throw new NotImplementedException();
+            var index = array[idx].FindIndex(value);
+            if (index > -1)
+                array[idx].Remove(index);
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            foreach (var item in array)
+            {
+                item.Clear();
+            }
         }
 
-        public bool Contains(int value)
+        public bool Contains(T value)
         {
-            throw new NotImplementedException();
+            var idx = CalculateHash(value);
+            if (array[idx] == null)
+                array[idx] = new SinglyLinkedList.List<T>(); //make sure that the LL is created
+
+            if (array[idx].Find(value) != null)
+                return true;
+
+            return false;
         }
 
-        private int CalculateHash(int value)
+        private int CalculateHash(T value)
         {
-            throw new NotImplementedException();
+            return Math.Abs(value.GetHashCode()) % array.Length;
         }
     }
 }

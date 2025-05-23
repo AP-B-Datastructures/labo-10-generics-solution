@@ -2,9 +2,9 @@ using System;
 
 namespace Generics.library.BST
 {
-    public class Tree
+    public class Tree<T> where T : IComparable
     {
-        public Node Root { get; private set; }
+        public Node<T> Root { get; private set; }
 
         public int Count
         {
@@ -14,50 +14,50 @@ namespace Generics.library.BST
             }
         }
 
-        public Node Insert(int value)
+        public Node<T> Insert(T value)
         {
             if (Root is null)
             {
-                Root = new Node(value);
+                Root = new(value);
                 return Root;
             }
             else
             {
                 var node = FindNode(Root, value);
-                if (node.Value == value)
+                if (node.Value.CompareTo(value) == 0)
                 {
                     return node;
                 }
 
-                if (value < node.Value)
+                if (node.Value.CompareTo(value) < 0)
                 {
-                    node.Left = new Node(value);
+                    node.Left = new Node<T>(value);
                     return node.Left;
                 }
                 else
                 {
-                    node.Right = new Node(value);
+                    node.Right = new Node<T>(value);
                     return node.Right;
                 }
             }
         }
 
-        public bool Contains(int value)
+        public bool Contains(T value)
         {
             return FindNode(value) != null;
         }
 
-        public Node FindNode(int value)
+        public Node<T> FindNode(T value)
         {
             var node = FindNode(Root, value);
-            if (node != null && node.Value == value)
+            if (node != null && node.Value.CompareTo(value) == 0)
                 return node;
             else
                 return null;
 
         }
 
-        public int Remove(int value)
+        public T Remove(T value)
         {
             Root = Remove(Root, value);
             return value;
@@ -68,13 +68,12 @@ namespace Generics.library.BST
             Root = null;
         }
 
-        public int Lowest()
+        public T Lowest()
         {
-            int min = int.MinValue;
+            T min = default;
             var node = Root;
             if (node == null)
                 throw new Exception("BST is empty");
-
             while (node != null)
             {
                 min = node.Value;
@@ -84,7 +83,7 @@ namespace Generics.library.BST
             return min;
         }
 
-        public int LowestRecursive()
+        public T LowestRecursive()
         {
             return Lowest(Root);
         }
@@ -94,18 +93,18 @@ namespace Generics.library.BST
             return Height(Root);
         }
 
-        private Node Remove(Node root, int value)
+        private Node<T> Remove(Node<T> root, T value)
         {
             if (root == null)
                 return null;
 
             //First descend the tree to find the node with the specified value
-            if (root.Value > value)
+            if (root.Value.CompareTo(value) > 0)
             {
                 root.Left = Remove(root.Left, value);
                 return root;
             }
-            else if (root.Value < value)
+            else if (root.Value.CompareTo(value) < 0)
             {
                 root.Right = Remove(root.Right, value);
                 return root;
@@ -123,25 +122,25 @@ namespace Generics.library.BST
             return newn;
         }
 
-        private int FindMinValue(Node root)
+        private T FindMinValue(Node<T> root)
         {
             if (root == null)
-                return -1;
+                throw new KeyNotFoundException();
             if (root.Left != null)
                 return FindMinValue(root.Left);
             return root.Value;
         }
 
-        private Node FindNode(Node parent, int value)
+        private Node<T> FindNode(Node<T> parent, T value)
         {
-            Node temp;
+            Node<T> temp;
 
             if (parent == null)
                 return parent;
 
-            if (parent.Value == value)
+            if (parent.Value.CompareTo(value) == 0)
                 temp = parent;
-            else if (parent.Value > value)
+            else if (parent.Value.CompareTo(value) > 0)
                 temp = FindNode(parent.Left, value);
             else
                 temp = FindNode(parent.Right, value);
@@ -149,7 +148,7 @@ namespace Generics.library.BST
             return (temp == null ? parent : temp);
         }
 
-        private int Height(Node node)
+        private int Height(Node<T> node)
         {
             if (node == null)
                 return 0;
@@ -158,7 +157,7 @@ namespace Generics.library.BST
             return 1 + Math.Max(Height(node.Left), Height(node.Right));
         }
 
-        private int CountNodes(Node node)
+        private int CountNodes(Node<T> node)
         {
             if (node == null)
                 return 0;
@@ -166,10 +165,10 @@ namespace Generics.library.BST
             return 1 + CountNodes(node.Left) + CountNodes(node.Right);
         }
 
-        private int Lowest(Node node)
+        private T Lowest(Node<T> node)
         {
             if (node == null)
-                return 0;
+                throw new Exception("BST is empty");
             if (node.Left != null)
                 return Lowest(node.Left);
             else

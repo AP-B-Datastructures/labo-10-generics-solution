@@ -2,17 +2,17 @@ using System;
 
 namespace Generics.library.BST
 {
-    public class Node
+    public class Node<T> where T : IComparable
     {
-        public Node(int value)
+        public Node(T value)
         {
             Value = value;
         }
 
-        public int Value { get; set; }
+        public T Value { get; set; }
 
-        public Node Left { get; set; }
-        public Node Right { get; set; }
+        public Node<T> Left { get; set; }
+        public Node<T> Right { get; set; }
 
         public override string ToString()
         {

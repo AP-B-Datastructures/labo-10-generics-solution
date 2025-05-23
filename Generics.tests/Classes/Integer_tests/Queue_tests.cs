@@ -5,13 +5,13 @@ namespace Generics.tests.Classes.Integer_tests
 {
     public class Queue_tests
     {
-        private Queue queue;
+        private Generics.library.Queue<int> queue;
 
         [TestInitialize]
         public void TestInitialize()
         {
             // Initialize the stack before each test
-            queue = new Queue();
+            queue = new();
         }
 
         [TestMethod]

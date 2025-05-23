@@ -5,13 +5,13 @@ namespace Generics.tests.Classes.Integer_tests
 {
     public class Stack_tests
     {
-        private Stack stack;
+        private Generics.library.Stack<int> stack;
 
         [TestInitialize]
         public void TestInitialize()
         {
             // Initialize the stack before each test
-            stack = new Stack();
+            stack = new();
         }
 
         [TestMethod]

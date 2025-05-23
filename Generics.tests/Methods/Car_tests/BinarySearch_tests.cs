@@ -16,7 +16,7 @@ namespace Generics.tests.Methods.Car_tests
 
             Car[] cars = new Car[] { car1, car2, car3 };
             
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
     }
 }

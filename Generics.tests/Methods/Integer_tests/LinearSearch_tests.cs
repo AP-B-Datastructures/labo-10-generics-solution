@@ -11,7 +11,7 @@ namespace Generics.tests.Methods.Integer_tests
         public void LinearSearch_SLL_TargetExistsInList_ShouldReturnCorrectIndex()
         {
             // Arrange
-            List list = new List();
+            Generics.library.SinglyLinkedList.List<int> list = new();
             list.Add(10);
             list.Add(20);
             list.Add(30);
@@ -31,7 +31,7 @@ namespace Generics.tests.Methods.Integer_tests
         public void LinearSearch_SLL_TargetDoesNotExistInList_ShouldReturnNegativeOne()
         {
             // Arrange
-            List list = new List();
+            Generics.library.SinglyLinkedList.List<int> list = new();
             list.Add(10);
             list.Add(20);
             list.Add(30);
@@ -50,7 +50,7 @@ namespace Generics.tests.Methods.Integer_tests
         public void LinearSearch_SLL_TargetIsAtTheBeginning_ShouldReturnZero()
         {
             // Arrange
-            List list = new List();
+            Generics.library.SinglyLinkedList.List<int> list = new();
             list.Add(10);
             list.Add(20);
             list.Add(30);
@@ -69,7 +69,7 @@ namespace Generics.tests.Methods.Integer_tests
         public void LinearSearch_SLL_TargetIsAtTheEnd_ShouldReturnLastIndex()
         {
             // Arrange
-            List list = new List();
+            Generics.library.SinglyLinkedList.List<int> list = new();
             list.Add(10);
             list.Add(20);
             list.Add(30);
@@ -88,7 +88,7 @@ namespace Generics.tests.Methods.Integer_tests
         public void LinearSearch_SLL_ArrayHasDuplicateTargets_ShouldReturnFirstIndex()
         {
             // Arrange
-            List list = new List();
+            Generics.library.SinglyLinkedList.List<int> list = new();
             list.Add(10);
             list.Add(20);
             list.Add(30);
@@ -107,7 +107,7 @@ namespace Generics.tests.Methods.Integer_tests
         public void LinearSearch_SLL_ArrayIsEmpty_ShouldReturnNegativeOne()
         {
             // Arrange
-            List list = new List();
+            Generics.library.SinglyLinkedList.List<int> list = new();
             int target = 10;
 
             // Act
@@ -121,7 +121,7 @@ namespace Generics.tests.Methods.Integer_tests
         public void LinearSearch_SLL_ArrayHasSingleElement_TargetExists_ShouldReturnZero()
         {
             // Arrange
-            List list = new List();
+            Generics.library.SinglyLinkedList.List<int> list = new();
             list.Add(10);
             int target = 10;
 
@@ -136,7 +136,7 @@ namespace Generics.tests.Methods.Integer_tests
         public void LinearSearch_SLL_ArrayHasSingleElement_TargetDoesNotExist_ShouldReturnNegativeOne()
         {
             // Arrange
-            List list = new List();
+            Generics.library.SinglyLinkedList.List<int> list = new();
             list.Add(10);
             int target = 20;
 
@@ -151,7 +151,7 @@ namespace Generics.tests.Methods.Integer_tests
         public void LinearSearch_SLL_NegativeTarget_ShouldWorkCorrectly()
         {
             // Arrange
-            List list = new List();
+            Generics.library.SinglyLinkedList.List<int> list = new();
             list.Add(-10);
             list.Add(-20);
             list.Add(-30);
@@ -170,7 +170,7 @@ namespace Generics.tests.Methods.Integer_tests
         public void LinearSearch_SLL_MixedPositiveAndNegativeNumbers_ShouldFindTarget()
         {
             // Arrange
-            List list = new List();
+            Generics.library.SinglyLinkedList.List<int> list = new();
             list.Add(-10);
             list.Add(20);
             list.Add(-30);
